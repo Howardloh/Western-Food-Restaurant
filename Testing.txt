@@ -1,0 +1,54 @@
+@ C:\PL_SQL\LohLiXin\
+Testing
+___________________________________________________________________________________________
+Procedure 1
+
+BEGIN
+    AddNewItem('New Item', 'Description of the new item', 9.99, 'In Stock', 'CA001');
+END;
+/
+___________________________________________________________________________________________
+
+Procedure 2
+
+BEGIN
+    DeleteItem('I074');
+END;
+/
+___________________________________________________________________________________________
+
+Triggers 1
+
+INSERT INTO Customers (customerID, customerName, customerEmail, customerPhone, customerAddress) VALUES ('C051', 'Darlene Ingraham', 'dingrahamj11@gmail.com', '017-493-5802', '3 Bay Parkway');
+
+INSERT INTO Customers (customerID, customerName, customerEmail, customerPhone, customerAddress) VALUES ('C052', 'Darlene Ingraham', 'dingrahamj11@gmail.com', '017-493-5802', '3 Bay Parkway');
+
+DELETE FROM Customers
+    WHERE customerID = 'C051'
+/
+
+___________________________________________________________________________________________
+Triggers 2 
+
+INSERT INTO Orders (orderID, orderDate, orderStatus, employeeID, customerID) VALUES ('O0121', TO_DATE('06/12/2023', 'MM/DD/YYYY'), 'DELIVERED', 'E014', 'C005');
+
+INSERT INTO OrderItems (orderItemID, orderQuantity, orderPrice, orderID, itemsID) values ('OI121', 5, 25.00, 'O0121', 'I046');
+
+INSERT INTO OrderSetMeals (orderSetMealID, orderQuantity, orderPrice, orderID, setMealID) VALUES ('OSM101', 3, 18.00, 'O0121', 'SM007');
+
+INSERT INTO Payments (paymentId, paymentAmount, paymentDate, paymentMethod, employeeID, orderID, customerID) VALUES ('P0121', NULL, TO_DATE('06/27/2023', 'MM/DD/YYYY'), 'TNG', 'E010', 'O0121', 'C005');
+
+SELECT * FROM Payments WHERE paymentID = 'P0121';
+
+DELETE FROM Payments
+WHERE paymentID = 'P0121';
+
+DELETE FROM OrderItems
+WHERE orderID = 'O0121';
+
+DELETE FROM OrderSetMeals
+WHERE orderID = 'O0121';
+
+DELETE FROM Orders
+WHERE orderID = 'O0121';
+___________________________________________________________________________________________
